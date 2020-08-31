@@ -6,14 +6,11 @@ import random
 import re
 import sys
 
-
-
 #
 # Complete the 'fizzBuzz' function below.
 #
 # The function accepts INTEGER n as parameter.
 #
-
 
 # if i is a multiple of both 3 and 5, print FizzBuzz
 # if i is a multiple of 3 (but not 5), print Fizz
@@ -31,9 +28,6 @@ def fizzBuzz(n):
     if not output:
       output=x
     print(output)
-
-
-  
 
 if __name__ == '__main__':
     n = int(input().strip())
