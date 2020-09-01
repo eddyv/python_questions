@@ -20,6 +20,11 @@ def rotLeft(a, d):
     a.append(a.pop(0))
   return a
 
+def rotLeftIndexSliced(a,d):
+  # return the items from the 'd'th element to the end + the items from the beginning to the 'd'th element
+  return a[d:] + a[:d]
+
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
@@ -31,7 +36,7 @@ if __name__ == '__main__':
 
     a = list(map(int, input().rstrip().split()))
 
-    result = rotLeft(a, d)
+    result = rotLeftIndexSliced(a, d)
 
     fptr.write(' '.join(map(str, result)))
     fptr.write('\n')
