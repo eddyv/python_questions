@@ -27,23 +27,17 @@ class Solution:
         start_index = 0
         # start_index + (end_index - start_index)/ 2
         end_index = len(nums) - 1
-        middle_index = int(round(end_index / 2))
 
-        while end_index - start_index >= 3:
-            if nums[middle_index] == target:
-                return middle_index
-            elif nums[middle_index] > target:
-                end_index = middle_index
-                middle_index = start_index + int(round((end_index - start_index) / 2))
-            elif nums[middle_index] < target:
-                start_index = middle_index
-                middle_index = start_index + int(round((end_index - start_index) / 2))
-        if nums[start_index] == target:
-            return start_index
-        elif nums[end_index] == target:
-            return end_index
-        elif nums[middle_index] == target:
-            return middle_index
+        while start_index <= end_index:
+            # avoid overflow by using a + (b-a) / 2
+            mid_index = start_index + (end_index - start_index) // 2
+            if nums[mid_index] == target:
+                return mid_index
+            elif nums[mid_index] > target:
+                end_index = mid_index - 1
+            elif nums[mid_index] < target:
+                start_index = mid_index + 1
+
         return -1
 
 
