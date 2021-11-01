@@ -28,16 +28,19 @@ class Solution:
         # start_index + (end_index - start_index)/ 2
         end_index = len(nums) - 1
 
+        # terminate when start > end a.k.a we cant find the target
         while start_index <= end_index:
             # avoid overflow by using a + (b-a) / 2
             mid_index = start_index + (end_index - start_index) // 2
             if nums[mid_index] == target:
                 return mid_index
+            # search right side
             elif nums[mid_index] > target:
                 end_index = mid_index - 1
+            # search left side
             elif nums[mid_index] < target:
                 start_index = mid_index + 1
-
+        # not found
         return -1
 
 
