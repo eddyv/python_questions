@@ -21,8 +21,6 @@ class Solution:
         start_pos = 0
         end_pos = 0
         max_consecutive_ones = 0
-        # This switches between True or false
-        flip_used = False
         zero_counter = 0
         for num in nums:
             if num == 0:

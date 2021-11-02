@@ -2,6 +2,7 @@
 import fileinput
 import math
 
+
 class Message:
     def __init__(self, sender, recipient, conversation_id):
         self.sender = sender
@@ -25,18 +26,20 @@ class Message:
         33 (Business owner 42 received three conversations total (1, 2, and 4), but only
         responded to one conversation (conversation ID 1)).
 """
+
+
 # floor(# conversations where business owner wrote >= 1 message) / (# total conversations a business owner is involved in) * 100)
 def business_responsiveness_rate(biz_owner_id, all_messages):
-    bizOwnerConversations=set()
-    bizOwnerResponded=set()
-    for message in all_messages:     
-      if biz_owner_id == message.sender:
-        bizOwnerResponded.add(message.conversation_id)
-        bizOwnerConversations.add(message.conversation_id)
-      elif biz_owner_id == message.recipient:
-        bizOwnerConversations.add(message.conversation_id)
+    bizOwnerConversations = set()
+    bizOwnerResponded = set()
+    for message in all_messages:
+        if biz_owner_id == message.sender:
+            bizOwnerResponded.add(message.conversation_id)
+            bizOwnerConversations.add(message.conversation_id)
+        elif biz_owner_id == message.recipient:
+            bizOwnerConversations.add(message.conversation_id)
     if len(bizOwnerConversations) == 0:
-      return 0
+        return 0
     # print("bizMessg: {}".format(len(bizOwnerResponded)))
     # print("uniq bizConversations: {}".format(len(bizOwnerConversations)))
     return math.floor(len(bizOwnerResponded) / len(bizOwnerConversations) * 100)
