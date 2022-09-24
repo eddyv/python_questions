@@ -19,6 +19,7 @@ def bfs(grid):
 
     # while we still have elements to traverse
     while queue:
+        print(range(len(queue)))
         for i in range(len(queue)):
             row, col = queue.popleft()
             # we have visited all the nodes
@@ -40,7 +41,8 @@ def bfs(grid):
                 # This keeps our traversal in order of what directions we have as anything "new" will be added to
                 # the end. In other words, this is how we build our layers
                 queue.append((row + delta_row, col + delta_col))
-                # we are now done with the current node so we can mark it as visited so we don't traverse it again
+                # prevent the node from being visited again from a different node since we've already seen it once in a
+                # previous step.
                 visit.add((row + delta_row, col + delta_col))
         length += 1
     return length
