@@ -3,7 +3,7 @@
 #         [1,1,0,0],
 #         [0,0,0,1],
 #         [0,1,0,0]]
-# visit = [(row#,col#),...]
+# visit = {(row#,col#),...}
 def dfs(grid, row, col, visit):
     row_length, col_length = len(grid), len(grid[0])
     # Check if out of bounds or if the row is not traversable / visited already in the current path.
@@ -19,7 +19,7 @@ def dfs(grid, row, col, visit):
     # move down
     count += dfs(grid, row + 1, col, visit)
     # move up
-    dfs(grid, row - 1, col, visit)
+    count += dfs(grid, row - 1, col, visit)
     # move right
     count += dfs(grid, row, col + 1, visit)
     # move left
@@ -33,4 +33,6 @@ if __name__ == '__main__':
             [1, 1, 0, 0],
             [0, 0, 0, 1],
             [0, 1, 0, 0]]
+    print(dfs(grid, 3, 0, set()))
+    print(dfs(grid, 0, 3, set()))
     print(dfs(grid, 0, 0, set()))
