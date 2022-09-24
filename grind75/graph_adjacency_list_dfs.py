@@ -1,4 +1,5 @@
 # Count paths (backtracking)
+# O(N^V)
 def dfs(node: str, target: str, adjList, visit):
     # if the node is visited already exit
     if node in visit:

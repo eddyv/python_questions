@@ -8,6 +8,8 @@ def bfs(node: str, target: str, adjList: Dict[str, List[str]]):
     queue = deque()
     queue.append(node)
     visit = set()
+    # dont forget to add the first node to visited
+    visit.add(node)
 
     while queue:
         for i in range(len(queue)):
@@ -15,8 +17,9 @@ def bfs(node: str, target: str, adjList: Dict[str, List[str]]):
             if curr_node == target:
                 return length
             for neighbour in adjList[curr_node]:
-                queue.append(neighbour)
-                visit.add(neighbour)
+                if neighbour not in visit:
+                    queue.append(neighbour)
+                    visit.add(neighbour)
         length += 1  # next layer
     return length
 
