@@ -4,6 +4,8 @@
 #         [0,0,0,1],
 #         [0,1,0,0]]
 # visit = {(row#,col#),...}
+# time complexity is O(4^row*col) as for the worse case we need to use all 4 choices we have per node
+# Space complexity is the size of the grid so row*col
 def dfs(grid, row, col, visit):
     row_length, col_length = len(grid), len(grid[0])
     # Check if out of bounds or if the row is not traversable / visited already in the current path.
