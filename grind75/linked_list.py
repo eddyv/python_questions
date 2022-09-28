@@ -1,65 +1,69 @@
 class Node:
-    def __init__(self, val):
-        self.val = val
+    def __init__(self, data):
+        self.data = data
         self.next = None
+
+    def __repr__(self):
+        return self.data
 
 
 class LinkedList:
-    def __init__(self):
-        # dummy node which makes removing a node from the start easier
-        self.head = self.tail = Node(-1)
+    def __init__(self, nodes=None):
+        self.head = None
+        if nodes is not None:
+            node = Node(data=nodes.pop(0))
+            self.head = node
+            for elem in nodes:
+                node.next = Node(data=elem)
+                node = node.next
 
-    def insertEnd(self, val):
-        self.tail.next = Node(val)
-        self.tail = self.tail.next
+    def __repr__(self):
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(node.data)
+            node = node.next
+        nodes.append("None")
+        return " -> ".join(nodes)
 
-    def insertStart(self, val):
-        old_head = self.head.next
-        new_head = Node(val)
-        self.head.next = new_head
-        if old_head:
-            new_head.next = old_head
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
 
-    def remove(self, index):
-        i = 0
-        curr = self.head
-        while i < index and curr:
-            i += 1
-            curr = curr.next
-        # remove the node ahead of curr
-        if curr:
-            if curr.next:
-                curr.next = curr.next.next
+    def add_first(self, node):
+        node.next = self.head
+        self.head = node
 
-    def print(self):
-        curr = self.head.next
-        while curr:
-            print(f'{curr.val}->', end='')
-            curr = curr.next
-        print()
+    def add_last(self, node):
+        if self.head is None:
+            self.head = node
+            return
+        current_node = self.head
+        while current_node.next:
+            current_node = current_node.next
+        current_node.next = node
 
 
 if __name__ == '__main__':
-    ll = LinkedList()
-    ll.insertEnd(3)
-    ll.print()
-    ll.insertStart(2)
-    ll.print()
-    ll.insertStart(1)
-    ll.print()
-    ll.insertEnd(4)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.remove(0)
-    ll.print()
-    ll.insertEnd(1)
-    ll.print()
+    llist = LinkedList()
+    print(llist)
+
+    first_node = Node("a")
+    llist.head = first_node
+    print(llist)
+
+    second_node = Node("b")
+    third_node = Node("c")
+    first_node.next = second_node
+    second_node.next = third_node
+    print(llist)
+
+    llist = LinkedList(["a", "b", "c", "d", "e"])
+    print(llist)
+    for node in llist:
+        print(node)
+    llist.add_first(Node('x'))
+    llist.add_last(Node('z'))
+    print(llist)
