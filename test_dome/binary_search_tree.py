@@ -2,18 +2,21 @@ import collections
 
 Node = collections.namedtuple('Node', ['left', 'right', 'value'])
 
+
 # checks if a given binary search tree contains a given value.
 
 
 def contains(root, value):
-    if(root == None):
+    if (root == None):
         return False
-    if(root.value == value):
+    if root.value == value:
         return True
-    elif (root.value > value):
-        return contains(root.left,value)
-    elif (root.value < value):
-        return contains(root.right,value)
+    elif root.value > value:
+        return contains(root.left, value)
+    elif root.value < value:
+        return contains(root.right, value)
+
+
 #   Example case:
 #   Correctness:
 #   Performance test on a large tree:

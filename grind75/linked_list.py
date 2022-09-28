@@ -90,6 +90,7 @@ class LinkedList:
             prev_node = curr_node
             curr_node = curr_node.next
 
+
 if __name__ == '__main__':
     llist = LinkedList()
     print(llist)
