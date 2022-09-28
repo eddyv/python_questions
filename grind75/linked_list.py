@@ -45,6 +45,50 @@ class LinkedList:
             current_node = current_node.next
         current_node.next = node
 
+    def add_after(self, target_node_data, new_node):
+        if self.head is None:
+            pass
+        if self.head.data == target_node_data:
+            new_node.next = self.head.next
+            self.head.next = new_node
+        current_node = self.head
+        while current_node.next:
+            if current_node.data == target_node_data:
+                new_node.next = current_node.next
+                current_node.next = new_node
+                return
+            current_node = current_node.next
+
+    def add_before(self, target_node_data, new_node):
+        if self.head is None:
+            pass
+        if self.head.data == target_node_data:
+            return self.add_first(new_node)
+        prev_node = self.head
+        current_node = self.head.next
+        if current_node:
+            while current_node.next:
+                if current_node.data == target_node_data:
+                    prev_node.next = new_node
+                    new_node.next = current_node
+                    return
+                prev_node = current_node
+                current_node = current_node.next
+
+    def remove_node(self, target_node_data):
+        if self.head is None:
+            pass
+        if self.head.data == target_node_data:
+            self.head = self.head.next
+            return
+        prev_node = self.head
+        curr_node = self.head.next
+        while curr_node:
+            if curr_node.data == target_node_data:
+                prev_node.next = curr_node.next
+                return
+            prev_node = curr_node
+            curr_node = curr_node.next
 
 if __name__ == '__main__':
     llist = LinkedList()
