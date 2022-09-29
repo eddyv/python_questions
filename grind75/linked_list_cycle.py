@@ -10,9 +10,6 @@ class ListNode:
 
 class Solution:
 
-    def helper(self, node: Optional[ListNode], visited: Set[ListNode]) -> bool:
-        pass
-
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         if not head:
             return False
